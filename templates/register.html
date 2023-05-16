@@ -1,0 +1,85 @@
+<html>
+<head>
+    
+    <title>register</title>
+
+    <style>
+        span
+        {
+            color: red;
+        }
+    
+        #div2
+            {
+                text-align:center;
+                border:3px solid black;
+                width:500px;
+                margin:auto;
+                padding-top:100px;
+                padding-bottom:50px;
+                box-sizing:border-box;
+            }
+            input
+            {
+                padding:15px;
+            }
+            
+            input[type="submit"] /,input[type="password"]/
+            {
+                padding:15px 20px;
+                color:red;
+                background-color:yellow;
+                border-radius:50%;
+            }
+    
+    
+    </style>
+    <script>
+        var xmlhttp;
+
+function check()
+			{
+					var username=document.registerForm.name.value;
+									
+					var data = "username="+username;
+
+					xmlhttp= new XMLHttpRequest();
+
+					xmlhttp.onload=displayData;
+
+					xmlhttp.open("get","/checkUsername?" + data);
+				
+					xmlhttp.send();
+				
+			}
+    </script>
+    
+
+</head>
+<body>
+    
+<div id="div2">
+
+    <form action="saveUserData" method="POST" name="registerForm" enctype="multipart/form-data">
+    
+        {% csrf_token %}
+
+        <span id="show" style="color:red;font-size: larger;"></span><br><br>
+        Name;<input  type="text" name="name" placeholder="Enter user name" onfocus="changeStyle(this)" onblur="check()"><br><br>
+    
+        Password:<input  type="password" name="password"  placeholder="Enter password" onfocus="changeStyle(this)"><br><br>
+    
+        Mobile:<input  type="text" name="mobno"  placeholder="Enter mobilenumber" onfocus="changeStyle(this)"><br><br>
+    
+        Email:<input  type="text" name="email"  placeholder="Enter email" onfocus="changeStyle(this)"><br><br>
+        
+        Photo:<input type="file" name="photo"><br><br>
+		
+        <input type="submit" value="register">
+
+    </form>
+    
+</div>
+    
+</body>
+</html>
